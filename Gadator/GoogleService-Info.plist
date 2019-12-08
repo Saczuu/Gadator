@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>221044737712-ei6nk888mp0bgv073dug2k4qd3m6380j.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.221044737712-ei6nk888mp0bgv073dug2k4qd3m6380j</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCEgY4kJpfb-5srm7BDsyPbRqiDEKXZaKI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>221044737712</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.scm.Gadator</string>
+	<key>PROJECT_ID</key>
+	<string>gadatorscm</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gadatorscm.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:221044737712:ios:98a73f2ae49fe12c29dd75</string>
+	<key>DATABASE_URL</key>
+	<string>https://gadatorscm.firebaseio.com</string>
+</dict>
+</plist>

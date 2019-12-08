@@ -1,0 +1,92 @@
+{
+  "Chats" : {
+    "Pt3kvOsq6IViwVgnR7kNu1yjfu33630xq9OtIkRd5SncsEny2oSduI03" : {
+      "Members" : [ "Pt3kvOsq6IViwVgnR7kNu1yjfu33", "630xq9OtIkRd5SncsEny2oSduI03" ],
+      "Messages" : {
+        "2019-12-2 12:27:0" : {
+          "Author" : "630xq9OtIkRd5SncsEny2oSduI03",
+          "Value" : "Cześć"
+        },
+        "2019-12-2 9:19:0" : {
+          "Author" : "Pt3kvOsq6IViwVgnR7kNu1yjfu33",
+          "Value" : "Hejo"
+        },
+        "2019-12-2 9:19:3" : {
+          "Author" : "Pt3kvOsq6IViwVgnR7kNu1yjfu33",
+          "Value" : "Co tam"
+        },
+        "2019-12-7 11:0:0" : {
+          "Author" : "630xq9OtIkRd5SncsEny2oSduI03",
+          "Value" : "No u mnie spoko :)"
+        },
+        "2019-12-7 11:10:0" : {
+          "Author" : "630xq9OtIkRd5SncsEny2oSduI03",
+          "Value" : "A, u ciebie?"
+        },
+        "2019-12-7 11:20:0" : {
+          "Author" : "Pt3kvOsq6IViwVgnR7kNu1yjfu33",
+          "Value" : "No świąteczny okres, wiesz porządki i tego typu sprawy."
+        },
+        "2019-12-7 16:56:17" : {
+          "Author" : "Pt3kvOsq6IViwVgnR7kNu1yjfu33",
+          "Value" : "Może chciał byś się spotkać ?"
+        },
+        "2019-12-7 16:59:22" : {
+          "Author" : "Pt3kvOsq6IViwVgnR7kNu1yjfu33",
+          "Value" : "Na przykład jutro w galerii"
+        },
+        "2019-12-7 17:1:17" : {
+          "Author" : "630xq9OtIkRd5SncsEny2oSduI03",
+          "Value" : "Bo w sumie to chętnie się spotkam"
+        },
+        "2019-12-7 17:1:53" : {
+          "Author" : "Pt3kvOsq6IViwVgnR7kNu1yjfu33",
+          "Value" : "No to co, jutro ci pasuje ?"
+        },
+        "2019-12-7 19:18:43" : {
+          "Author" : "630xq9OtIkRd5SncsEny2oSduI03",
+          "Value" : "Oczywiscie"
+        },
+        "2019-12-7 21:56:24" : {
+          "Author" : "Pt3kvOsq6IViwVgnR7kNu1yjfu33",
+          "Value" : "No to super !"
+        }
+      }
+    }
+  },
+  "Users" : {
+    "15O2Y5B10ZSbO8nLyC5MeRCCwUC2" : {
+      "Name" : "Sffuhrwfiei"
+    },
+    "630xq9OtIkRd5SncsEny2oSduI03" : {
+      "Name" : "Saczewski"
+    },
+    "7OCri3aPMxhwDDSyi1a1UHlwz383" : {
+      "Name" : "Dhsdghsogifgio"
+    },
+    "GT9vDl72ZlYl1lQL9ii6W2cjTO63" : {
+      "Name" : "Sdhdgjfhgks"
+    },
+    "LBR4yYZD6Sa7z9PN8Ka3JW1FHlE2" : {
+      "Name" : "Sfsuff"
+    },
+    "Pt3kvOsq6IViwVgnR7kNu1yjfu33" : {
+      "Name" : "saczewski.maciej"
+    },
+    "VjGkyIptjAQUaSRcvjDKyLcD4ON2" : {
+      "Name" : "Test"
+    },
+    "W6391qfhPOSoogwbvxTDxOYt4PE3" : {
+      "Name" : "Testowy"
+    },
+    "iaSIqLMiTpSdoDwCVyeZ9PoZTKw2" : {
+      "Name" : "Dhsiohifhgw"
+    },
+    "uMP4woMZIxcQKKze6CZPNmq3e453" : {
+      "Name" : "Auheufigwig"
+    },
+    "xxueiS3xOiUlJBzQtzNS6oxUS5F2" : {
+      "Name" : "Eofeqhifwe"
+    }
+  }
+}
