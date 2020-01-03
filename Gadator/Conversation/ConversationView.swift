@@ -8,41 +8,47 @@
 
 import SwiftUI
 
-struct ConversationView: View {
+struct ConversationView: View, ViewInterface {
     
     @ObservedObject var viewModel: ConversationViewModel
-    var presenter: ConversationPresenter!
+    @ObservedObject private var keyboard = KeyboardResponder()
+    
+    var presenter: ConversationPresenterViewInterface!
     
     @State var newMessageText: String = ""
+    @State var scrollToBottom: Bool = true
     
     var body: some View {
         NavigationView {
             VStack {
-                List(viewModel.messagesToShow.sorted(by: { (message1, message2) -> Bool in
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd HH:m:s"
-                    return dateFormatter.date(from: message1.id)! < dateFormatter.date(from: message2.id)!
-                })) { message in
-                    HStack {
-                        if message.areCurrentUserIsAuthor {
-                            Spacer()
-                            Text("\(message.value)")
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 25)
-                                        .fill(Color.blue)
-                            )
-                        } else {
-                            Text("\(message.value)")
-                                .padding()
-                                .foregroundColor(.black)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 25)
-                                        .fill(Color.gray)
-                            )
-                            Spacer()
+                CustomScrollView(scrollToEnd: scrollToBottom) {
+                    ForEach (self.viewModel.messagesToShow.sorted(by: { (message1, message2) -> Bool in
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:m:s"
+                        return dateFormatter.date(from: message1.id)! < dateFormatter.date(from: message2.id)!
+                    })) { message in
+                        HStack {
+                            if message.areCurrentUserIsAuthor {
+                                Spacer()
+                                Text("\(message.value)")
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 25)
+                                            .fill(Color.blue)
+                                )
+                            } else {
+                                Text("\(message.value)")
+                                    .padding()
+                                    .foregroundColor(.black)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 25)
+                                            .fill(Color.gray)
+                                )
+                                Spacer()
+                            }
                         }
+                        .padding([.top, .bottom], 5)
                     }
                 }
                 HStack {
@@ -50,14 +56,22 @@ struct ConversationView: View {
                         self.presenter.sendMessage(value: self.newMessageText)
                         self.newMessageText = ""
                     }
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .onTapGesture {
+                        self.scrollToBottom = true
+                    }
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     Button(action: {
                         self.presenter.sendMessage(value: self.newMessageText)
                         self.newMessageText = ""
+                        self.scrollToBottom = true
                     }) {
                         Image(systemName: "paperplane.fill").scaleEffect(1.3).foregroundColor(Color.blue)
                     }.padding(.init(top: 0, leading: 0, bottom: 0, trailing: 16))
                 }
+                Rectangle()
+                    .frame(height: keyboard.currentHeight>0 ? keyboard.currentHeight-5 : 0)
+                    .foregroundColor(.white)
+                    .animation(.spring())
             }
             .padding([.trailing, .leading], 10)
             .navigationBarTitle(viewModel.reciverName)

@@ -9,21 +9,22 @@
 import Foundation
 
 
-class NewConversationPresenter {
+class NewConversationPresenter: PresenterInterface {
     var viewModel: NewConversationViewModel!
-    var router: NewConversationRouter!
-    var interactor: NewConversationInteractor!
-    
+    var router: NewConversationRouterPresenterInterface!
+    var interactor: NewConversationInteractorPresenterInterface!
+}
+extension NewConversationPresenter: NewConversationPresenterViewInterface {
     func goBackToListOfMessage() {
-        return self.router.goBackToListOfMessage()
+        return router.goBackToListOfMessage()
     }
     
     func selectReciver(reciver: FirebaseUser) {
         // Case one: in firebase is chat with id: currentUser_id+reciver_id, and we fetch this chat and push to ConversationView with it
-        self.interactor.fetchChat(with: reciver.id + self.interactor.getCurrentUser().uid) { (result) in
+        interactor.fetchChat(with: reciver.id + interactor.getCurrentUser().uid) { (result) in
             switch (result) {
             case .success(let chatDict) :
-                var foundedChat = self.parseChat(chatDict: chatDict)
+                var foundedChat = self.interactor.parseChat(chatDict: chatDict)
                 foundedChat.reciver = reciver
                 foundedChat.id = reciver.id + self.interactor.getCurrentUser().uid
                 self.router.goToChatView(chat: foundedChat)
@@ -32,10 +33,10 @@ class NewConversationPresenter {
             }
         }
         // Case two: in firebase is chat with id: reciver_id+currentUser_id, and we fetch this chat and push to ConversationView with it
-        self.interactor.fetchChat(with: self.interactor.getCurrentUser().uid + reciver.id) { (result) in
+        interactor.fetchChat(with: interactor.getCurrentUser().uid + reciver.id) { (result) in
             switch (result) {
             case .success(let chatDict) :
-                var foundedChat = self.parseChat(chatDict: chatDict)
+                var foundedChat = self.interactor.parseChat(chatDict: chatDict)
                 foundedChat.reciver = reciver
                 foundedChat.id = self.interactor.getCurrentUser().uid + reciver.id
                 self.router.goToChatView(chat: foundedChat)
@@ -44,11 +45,11 @@ class NewConversationPresenter {
             }
         }
         // Case three: there is no chat between currentUser and reciver, so we create new one with stadarized "starting message" and push it into ConversationView
-        self.interactor.createNewChat(with: reciver.id + self.interactor.getCurrentUser().uid, reciver: reciver)
-        self.interactor.fetchChat(with: reciver.id + self.interactor.getCurrentUser().uid) { (result) in
+        interactor.createNewChat(with: reciver.id + interactor.getCurrentUser().uid, reciver: reciver)
+        interactor.fetchChat(with: reciver.id + interactor.getCurrentUser().uid) { (result) in
             switch (result) {
             case .success(let chatDict) :
-                var foundedChat = self.parseChat(chatDict: chatDict)
+                var foundedChat = self.interactor.parseChat(chatDict: chatDict)
                 foundedChat.reciver = reciver
                 foundedChat.id = reciver.id + self.interactor.getCurrentUser().uid
                 self.router.goToChatView(chat: foundedChat)
@@ -56,20 +57,13 @@ class NewConversationPresenter {
                 print("Brak czatu")
             }
         }
-        
     }
+}
+
+extension NewConversationPresenter: NewConversationPresenterInteractorInterface {
     
-    func parseChat(chatDict: NSDictionary) -> FirebaseChat{
-        let chatMessages =  chatDict["Messages"] as! [String:[String:String]]
-        var messages: [FirebaseMessage] = []
-        for (uid, chatMessage) in chatMessages {
-            if uid.prefix(1) == "-" {
-                continue
-            }
-            messages.append(FirebaseMessage(id: uid,
-                                            areCurrentUserIsAuthor: self.interactor.getCurrentUser().uid == chatMessage["Author"]!,
-                                            value: chatMessage["Value"]!))
-        }
-        return FirebaseChat(id: "", reciver: FirebaseUser(id: "", name: ""), messages: messages)
-    }
+}
+
+extension NewConversationPresenter: NewConversationPresenterRouterInterface {
+    
 }

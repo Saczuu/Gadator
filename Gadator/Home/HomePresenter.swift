@@ -9,21 +9,24 @@
 import Foundation
 import SwiftUI
 
-class HomePresenter {
+class HomePresenter: PresenterInterface {
     
     var viewModel: HomeViewModel!
     var interactor: HomeInteractor!
     var router: HomeRouter!
     
 }
-extension HomePresenter {
-    
-    
-    func hideErrorPopUp() {
-        self.viewModel.showErrorPopUp.toggle()
-        self.viewModel.showLoadingIndicator.toggle()
-    }
 
+extension HomePresenter: HomePresenterViewInterface {
+    func hideErrorPopUp() {
+        viewModel.showErrorPopUp.toggle()
+        viewModel.showLoadingIndicator.toggle()
+    }
+    
+    func goToRegisterView() {
+        router.goToRegisterView()
+    }
+    
     func logInUser(email: String, password: String) {
         viewModel.showLoadingIndicator.toggle()
         interactor.LogIn(username: email, password: password) { (result) in
@@ -37,9 +40,12 @@ extension HomePresenter {
             }
         }
     }
+}
+
+extension HomePresenter: HomePresenterRouterInterface {
     
-    func goToRegisterView() {
-        self.router.goToRegisterView()
-    }
+}
+
+extension HomePresenter: HomePresenterInteractorInterface {
     
 }

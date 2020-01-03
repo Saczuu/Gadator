@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-struct ListOfMessageView: View {
+struct ListOfMessageView: View, ViewInterface {
     
     @ObservedObject var viewModel: ListOfMessageViewModel
-    var presenter: ListOfMessagePresenter!
+    var presenter: ListOfMessagePresenterViewInterface!
     
     var body: some View {
         ZStack {
@@ -49,6 +49,7 @@ struct ListOfMessageView: View {
                                     .foregroundColor(.gray)
                             }
                             .onTapGesture {
+                                print(chat)
                                 self.presenter.goToChatView(with: chat)
                             }
                             .frame(height:55)

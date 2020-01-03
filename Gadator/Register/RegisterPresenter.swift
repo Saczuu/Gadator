@@ -9,11 +9,12 @@
 import Foundation
 import SwiftUI
 
-class RegisterPresenter {
+class RegisterPresenter: PresenterInterface {
     var viewModel: RegisterViewModel!
-    var interactor: RegisterInteractor!
-    var router: RegisterRouter!
-    
+    var interactor: RegisterInteractorPresenterInterface!
+    var router: RegisterRouterPresenterInterface!
+}
+extension RegisterPresenter: RegisterPresenterViewInterface {
     func signUp(name: String, email: String, password: String) {
         print("Start")
         self.viewModel.showLoadingIndicator.toggle()
@@ -35,6 +36,18 @@ class RegisterPresenter {
     }
     
     func hideSuccessPopUp() {
+        return goToLoginView()
+    }
+    
+    func goToLoginView(){
         self.router.goToLoginView()
     }
+}
+
+extension RegisterPresenter: RegisterPresenterInteractorInterface {
+    
+}
+
+extension RegisterPresenter: RegisterPresenterRouterInterface {
+    
 }

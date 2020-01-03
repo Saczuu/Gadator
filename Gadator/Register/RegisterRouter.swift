@@ -8,9 +8,12 @@
 
 import Foundation
 
-class RegisterRouter {
-    var coordinator: Coordinator!
+class RegisterRouter: RouterInterface {
     
+    var coordinator: Coordinator!
+    var presenter: RegisterPresenterRouterInterface!
+}
+extension RegisterRouter: RegisterRouterPresenterInterface {
     func goToLoginView() {
         return coordinator.switchToLoginView()
     }

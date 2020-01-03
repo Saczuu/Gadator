@@ -8,19 +8,20 @@
 
 import Foundation
 
-class ConversationPresenter {
+class ConversationPresenter: PresenterInterface {
     var viewModel: ConversationViewModel!
-    var router: ConversationRouter!
-    var interactor: ConversationInteractor!
-    
+    var router: ConversationRouterPresenterInterface!
+    var interactor: ConversationInteractorPresenterInterface!
     var chat: FirebaseChat!
-    
+}
+
+extension ConversationPresenter: ConversationPresenterViewInterface {
     func goBackToListOfMessages() {
         return self.router.goToListOfMessageView()
     }
     
     func getChatMessages(){
-        self.interactor.fetchMessages(chatUID: chat.id) { (result) in
+        self.interactor.fetchMessages(chatUID: self.chat.id) { (result) in
             switch (result) {
             case .success(let fetchedDict):
                 var fetchedMessages: [FirebaseMessage] = []
@@ -44,4 +45,12 @@ class ConversationPresenter {
     func sendMessage(value: String){
         return self.interactor.sendMessage(chatUID: chat.id, value: value)
     }
+}
+
+extension ConversationPresenter: ConversationPresenterInteractorInterface {
+    
+}
+
+extension ConversationPresenter: ConversationPresenterRouterInterface {
+    
 }

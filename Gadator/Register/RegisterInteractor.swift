@@ -10,8 +10,11 @@ import Foundation
 import SwiftUI
 import Firebase
 
-class RegisterInteractor {
-    var presenter: RegisterPresenter!
+class RegisterInteractor: InteractorInterface {
+    var presenter: RegisterPresenterInteractorInterface!
+}
+
+extension RegisterInteractor: RegisterInteractorPresenterInterface {
     
     func register(name: String, email: String, password: String, response: @escaping (Result<FirebaseUser,Error>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in

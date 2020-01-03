@@ -9,11 +9,10 @@
 import Foundation
 import SwiftUI
 
-class ListOfMessagePresenter {
+class ListOfMessagePresenter: PresenterInterface {
     var viewModel: ListOfMessageViewModel!
-    var interactor: ListOfMessageInteractor!
-    var router: ListOfMessageRouter!
-    
+    var interactor: ListOfMessageInteractorPresenterInterface!
+    var router: ListOfMessageRouterPresenterInterface!
     var users: [FirebaseUser] = []
     
     private func getUser(with key: String) -> FirebaseUser? {
@@ -24,7 +23,8 @@ class ListOfMessagePresenter {
         }
         return nil
     }
-    
+}
+extension ListOfMessagePresenter: ListOfMessagePresenterViewInterface {
     func goToChatView(with chat: FirebaseChat) {
         return self.router.goToChatView(chat: chat)
     }
@@ -81,4 +81,12 @@ class ListOfMessagePresenter {
             }
         }
     }
+}
+
+extension ListOfMessagePresenter: ListOfMessagePresenterInteractorInterface {
+    
+}
+
+extension ListOfMessagePresenter: ListOfMessagePresenterRouterInterface {
+    
 }

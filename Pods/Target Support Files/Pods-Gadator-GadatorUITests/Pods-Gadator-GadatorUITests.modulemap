@@ -1,6 +1,0 @@
-framework module Pods_Gadator_GadatorUITests {
-  umbrella header "Pods-Gadator-GadatorUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

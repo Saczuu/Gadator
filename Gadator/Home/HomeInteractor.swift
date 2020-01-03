@@ -10,11 +10,15 @@ import Foundation
 import SwiftUI
 import Firebase
 
-class HomeInteractor {
+class HomeInteractor: InteractorInterface {
+    
+    typealias PresenterInteractor = HomePresenterInteractorInterface
+    var presenter: PresenterInteractor!
+    
 }
 
 //MARK: - Presenter
-extension HomeInteractor {
+extension HomeInteractor: HomeInteractorPresenterInteface {
     func LogIn(username: String, password: String, response: @escaping (Result<FirebaseUser,Error>) -> Void) {
         Auth.auth().signIn(withEmail: username, password: password) { [self] authResult, error in
             guard error == nil else {

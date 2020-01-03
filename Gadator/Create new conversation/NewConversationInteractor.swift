@@ -9,9 +9,10 @@
 import Foundation
 import Firebase
 
-class NewConversationInteractor {
-    var presenter: NewConversationPresenter!
-    
+class NewConversationInteractor: InteractorInterface {
+    var presenter: NewConversationPresenterInteractorInterface!
+}
+extension NewConversationInteractor: NewConversationInteractorPresenterInterface {
     func getCurrentUser() -> FirebaseAuth.User {
         return Auth.auth().currentUser!
     }
@@ -28,9 +29,21 @@ class NewConversationInteractor {
     
     func createNewChat(with chatUID: String, reciver: FirebaseUser) {
         let ref  = Database.database().reference()
-//        ref.child("Chats").child(chatUID).child("Messages").child("-1").setValue(["Author": self.getCurrentUser().uid, "Value": "*staring conversation*"])
-//        ref.child("Chats").child(chatUID).child("Members").setValue(["1": self.getCurrentUser().uid, "0": reciver.id])
         ref.child("Chats").child(chatUID).setValue(["Messages": ["-1": ["Author": self.getCurrentUser().uid, "Value": "*staring conversation*"]], "Members" : ["0": self.getCurrentUser().uid, "1": reciver.id]])
+    }
+    
+    func parseChat(chatDict: NSDictionary) -> FirebaseChat{
+        let chatMessages =  chatDict["Messages"] as! [String:[String:String]]
+        var messages: [FirebaseMessage] = []
+        for (uid, chatMessage) in chatMessages {
+            if uid.prefix(1) == "-" {
+                continue
+            }
+            messages.append(FirebaseMessage(id: uid,
+                                            areCurrentUserIsAuthor: self.getCurrentUser().uid == chatMessage["Author"]!,
+                                            value: chatMessage["Value"]!))
+        }
+        return FirebaseChat(id: "", reciver: FirebaseUser(id: "", name: ""), messages: messages)
     }
     
 }

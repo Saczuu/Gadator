@@ -9,9 +9,17 @@
 import Foundation
 import SwiftUI
 
-final class HomeRouter {
-    var coordinator: Coordinator!
+final class HomeRouter: RouterInterface {
     
+    typealias PresenterRouter = HomePresenterRouterInterface
+    typealias CoordinatorRouter = Coordinator
+    
+    var coordinator: CoordinatorRouter!
+    var presenter: PresenterRouter!
+    
+}
+
+extension HomeRouter: HomeRouterPresenterInterface {
     func goToRegisterView() {
         coordinator.switchToRegisterView()
     }

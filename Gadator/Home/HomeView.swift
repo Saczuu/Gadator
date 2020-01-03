@@ -8,18 +8,13 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct HomeView: View, ViewInterface {
     
     @ObservedObject var viewModel: HomeViewModel
-    private var presenter: HomePresenter!
+    var presenter: HomePresenterViewInterface!
     
     @State var userEmail: String = ""
     @State var userPassword: String = ""
-    
-    init(presenter: HomePresenter, viewModel: HomeViewModel) {
-        self.presenter = presenter
-        self.viewModel = viewModel
-    }
     
     var body: some View {
         ZStack {
@@ -48,7 +43,7 @@ struct HomeView: View {
                     Button(action: {
                         self.presenter.goToRegisterView()
                     }) {
-                        Text("Register")
+                        Text("Sign Up")
                             .padding()
                             .foregroundColor(.white)
                             .frame(minWidth:120, maxWidth: 200)

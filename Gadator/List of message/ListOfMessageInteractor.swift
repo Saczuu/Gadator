@@ -10,7 +10,10 @@ import Foundation
 import SwiftUI
 import Firebase
 
-class ListOfMessageInteractor {
+class ListOfMessageInteractor: InteractorInterface {
+    var presenter: ListOfMessagePresenterInteractorInterface!
+}
+extension ListOfMessageInteractor: ListOfMessageInteractorPresenterInterface {
     func fetchListOfMessage(response: @escaping (Result<NSDictionary,FetchError>) -> Void) {
         let ref  = Database.database().reference()
         ref.child("Chats").ref.observe(DataEventType.value, with: { (snapshot) in

@@ -21,15 +21,15 @@ struct Coordinator: View {
     var body: some View {
         switch currentView {
         case .login :
-            return AnyView(HomeModule().build(coordinator: self))
+            return AnyView(HomeModule().build(coordinator: self)).transition(.slide)
         case .register :
-            return AnyView(RegisterModule().build(coordinator: self))
+            return AnyView(RegisterModule().build(coordinator: self)).transition(.slide)
         case .listOfMessage :
-            return AnyView(ListOfMessageModule().build(coordinator: self))
+            return AnyView(ListOfMessageModule().build(coordinator: self)).transition(.slide)
         case .conversation :
-            return AnyView(ConversationModule().build(chat: chatToShow!, coordinator: self))
+            return AnyView(ConversationModule().build(chat: chatToShow!, coordinator: self)).transition(.slide)
         case .newConversation :
-            return AnyView(NewConversationModule().build(userList: self.userList!, coordinator: self))
+            return AnyView(NewConversationModule().build(userList: self.userList!, coordinator: self)).transition(.slide)
         }
     }
     
@@ -44,6 +44,7 @@ struct Coordinator: View {
     
     func switchToConversationView(with chat: FirebaseChat) {
         self.chatToShow = chat
+        print(chat)
         currentView = CurrentView.conversation
     }
     

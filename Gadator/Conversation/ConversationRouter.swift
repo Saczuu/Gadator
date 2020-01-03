@@ -8,9 +8,11 @@
 
 import Foundation
 
-class ConversationRouter {
+class ConversationRouter: RouterInterface {
+    var presenter: ConversationPresenterRouterInterface!
     var coordinator: Coordinator!
-    
+}
+extension ConversationRouter: ConversationRouterPresenterInterface {
     func goToListOfMessageView() {
         self.coordinator.switchToListOfMessageView()
     }

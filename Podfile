@@ -12,13 +12,4 @@ target 'Gadator' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Database'
   
-  target 'GadatorTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'GadatorUITests' do
-    # Pods for testing
-  end
-
 end

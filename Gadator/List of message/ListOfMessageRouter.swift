@@ -8,9 +8,12 @@
 
 import Foundation
 
-class ListOfMessageRouter {
+class ListOfMessageRouter: RouterInterface {
+
+    var presenter: ListOfMessagePresenterRouterInterface!
     var coordinator: Coordinator!
-    
+}
+extension ListOfMessageRouter: ListOfMessageRouterPresenterInterface {
     func goToChatView(chat: FirebaseChat) {
         self.coordinator.switchToConversationView(with: chat)
     }
