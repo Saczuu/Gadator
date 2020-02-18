@@ -1,2 +1,2 @@
 # Gadator
-SwiftUI Chating app using firebase databse.
+Chatting app for iOS/iPadOS and MacOS using Google FireBase for storing data, and user authentication. The project is written in clean architecture with my own implementation of the flow coordinator due to the new way of navigation in SwiftUI. I used firebase authentication on email, I'm also after successfully sign-ups add to a database entry with UUID and user name because of firebase won't support it natively. Chat fetching is async base on observators, which are attached to a specific child node in database structure.
